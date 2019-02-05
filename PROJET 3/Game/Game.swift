@@ -356,7 +356,7 @@
                 target = team.teamFighters[indexOfTarget]
                 
                 chosenFighter.heal(vsCharacter: target) // the MageOfWinterhold heals the target
-            }
+            } // end of function attackOrHeal()
                 
             else {         // chosenFighter is a fighter
                 repeat {    // display opposing team + choice of the target
