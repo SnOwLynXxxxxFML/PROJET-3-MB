@@ -322,7 +322,7 @@
                 tabOfIndexCurrentFighter.append("\(indexOfCurrentFighter)")                         // add index number to the tab of index
                 print("Choose the number corresponding to the character you want")
                 
-                playerFighterChoice = readLine()!
+                playerFighterChoice = readLine()!                                                   // the player chooses the character to play with
                 print("")
             } while playerFighterChoice == "" && !tabOfIndexCurrentFighter.contains("\(indexOfCurrentFighter)")
                                                                                                     // repeat while player leaves a blank
@@ -341,29 +341,29 @@
             var target: Character
             
             print(" \(team.nameTag) : you chose to play with \(chosenFighter.characterName)")
-            if chosenFighter.isAMageOfWinterhold {                                                       // if chosenFighter is a MageOfWinterhold
-                repeat {                                                                                 // display team + choice of the target
+            if chosenFighter.isAMageOfWinterhold {                                                    // if chosenFighter is a MageOfWinterhold
+                repeat {                                                                              // display team + choice of the target
                     print(" \(chosenFighter.characterName) is a Mage of Winterhold : which member of your team would you like to heal ?")
-                    for  indexOfTarget in 0..<team.teamFighters.count {
+                    for  indexOfTarget in 0..<team.teamFighters.count {                      // loop to "read" the tab teamFighter of the playing team
                         print("\(indexOfTarget) = \(team.teamFighters[indexOfTarget].characterName)")
-                        tabOfIndexOfTarget.append("\(indexOfTarget)")
+                        tabOfIndexOfTarget.append("\(indexOfTarget)")                                 // add index number to the tab of index (target)
                     }
-                    playerTargetChoice = readLine()!
+                    playerTargetChoice = readLine()!                                                  // player chooses the target
                     print("")
-                } while playerTargetChoice == "" && !tabOfIndexOfTarget.contains("\(indexOfTarget)")
-                
+                } while playerTargetChoice == "" && !tabOfIndexOfTarget.contains("\(indexOfTarget)")  // repeat while player leaves a blank
+                                                                                                      // or chooses a number not in the tab
                 indexOfTarget = Int(playerTargetChoice)!
-                target = team.teamFighters[indexOfTarget]
+                target = team.teamFighters[indexOfTarget]                                             // the target is the selected character
                 
-                chosenFighter.heal(vsCharacter: target) // the MageOfWinterhold heals the target
-            } // end of function attackOrHeal()
+                chosenFighter.heal(vsCharacter: target)                                               // the MageOfWinterhold heals the target
+            }
                 
-            else {         // chosenFighter is a fighter
-                repeat {    // display opposing team + choice of the target
+            else {                                                                                    // if the chosenFighter is a fighter
+                repeat {                                                                              // display opposing team + choice of the target
                     print(" \(chosenFighter.characterName) is a fighter : who would you like to attack ?")
-                    for  indexOfTarget in 0..<opposingTeam.teamFighters.count {
+                    for  indexOfTarget in 0..<opposingTeam.teamFighters.count {            // loop to "read" the tab teamGighters of the opposing team
                         print("\(indexOfTarget) = \(opposingTeam.teamFighters[indexOfTarget].characterName)")
-                        tabOfIndexOfTarget.append("\(indexOfTarget)")
+                        tabOfIndexOfTarget.append("\(indexOfTarget)")                                  // same thing
                     }
                     playerTargetChoice = readLine()!
                     print("")
@@ -372,17 +372,13 @@
                 indexOfTarget = Int(playerTargetChoice)!
                 target = opposingTeam.teamFighters[indexOfTarget]
                 
-                chosenFighter.attack(vsCharacter: target) // fighter attaks the target
+                chosenFighter.attack(vsCharacter: target)                                               // the fighter attacks the target
             }
             
-            // one character from team is still alive
-        }        // end of function attackOrHeal
+        }        // end of function attackOrHeal()
         
         
-        
-       
-        
-        //Display the Winner of the rpg
+        // Function theWinnerIs() : Displays the Winner of the rpg, the first player with 3 dead characters loses.
         func theWinnerIs() {
             if firstTeam.teamLife <= 0 {
                 print("=======🏆 CONGRATULATIONS \(secondTeam.nameTag) 🏆======="
@@ -392,63 +388,65 @@
                 print("=======🏆 CONGRATULATIONS \(firstTeam.nameTag) 🏆======="
                     + "\n You crushed \(secondTeam.nameTag) ! You are The Winner Of Bordeciel" )
             }
-        }
+        } // end of function theWinnerIs()
         
         
-        // A Random a chest appears, there is a new Weapon
+        // Function MagisChest() : a Magic Chest appears randomly before the chosenFighter (parameter of type Character)
+        // A special and powerful Weapon is inside
         func magicChest(opensBefore: Character) {
-            let randomNumber = Int.random(in: 1 ... 5)
+            let randomNumber = Int.random(in: 1 ... 5)                                     // 1 chance out of 5 to have a magicChest
             if randomNumber == 3 {
                 print(" ⚔️===== Waouhhhh a MagicChest appears in front of you =====⚔️ "
                     + "\n \(chosenFighter.characterName), open the Magic Chest !")
-                if chosenFighter.isAMageOfWinterhold == true {
+                if chosenFighter.isAMageOfWinterhold == true {                             // if the chosenFighter is a MageOfWinterholf
                     print(" \(chosenFighter.characterName),"
                         + "\n As a MageOfWinterhold you receive the Jirik Magic Wand : it is a very rare Wand, it used to belong to the famous Lord Jirik Gauldur, the most powerful Mage Of Winterhold in the Old Times."
                         + "\n It will restore 100 life points. As of this moment, you will keep this wand as your weapon.")
-                    chosenFighter.characterWeapon = JyrikMagicWand()
+                    chosenFighter.characterWeapon = JyrikMagicWand()                       // the character has a new healing weapon : JyrikMagicWand
                 }
-                else{
+                else{                                                                      // if the chosenFighter is a Fighter
                     print("\(chosenFighter.characterName),"
                         + "\n You are a fighter : you receive the DaedricSword : a legendary weapon ! It is the most powerful sword of Bordeciel"
                         + "\n It will cause 55 damage points ! As of this moment, you will keep the sword as your weapon.")
-                    chosenFighter.characterWeapon = DaedricSword()
+                    chosenFighter.characterWeapon = DaedricSword()                         // the character has a new weapon : DeadricSword
                 }
             }
-        }
+        } // end of function magicChest()
         
-        //   A power bonus
+        
+        // Function randomDragon() : BONUS to make it more fun
+        // The function has 2 parameters : team = the playing team, and vsOpposingTeam = the opposing team
         func randomDragon(team: Team, vsOpposingTeam: Team) {
-            let randomNumber = Int.random(in: 1...10)
+            let randomNumber = Int.random(in: 1...10)                      // Random apparition of 2 types of Dragons
             var playerChoice: String
-            if randomNumber == 2 {
+            if randomNumber == 2 {                                         // 1 chance out of 10 : the dragon ALDUIN appears
                 print("A shadow surrounds you, the wind blows harder. You turn around and here is the Legendary Dragon ALDUIN !"
                     + "\n Alduin is the Devourer Of The World, he can destroy your opponent's team, making you the winner of this game, or he can fly away"
                     + "\n \(team.nameTag) Press ENTER to see what happens")
                 repeat { playerChoice = readLine()!
                 } while playerChoice != ""
-                let secondRandomNumber = Int.random(in: 1...5)
+                let secondRandomNumber = Int.random(in: 1...5)             // if Alduin appeared : 1 chance out of 5 = he destroys the opposing team !
                 if secondRandomNumber == 3 {
                     print("Alduin takes a deep breath ... and SPITS FIRE ON TEAM \(vsOpposingTeam.teamName)! They are all dead, Alduin sent them to the Other World.")
-                    for i in 0..<team.teamFighters.count  {
-                        print("\(team.teamFighters[i].characterName) :")
-                        team.teamFighters[i].characterLife += 50
+                    for i in 0..<vsOpposingTeam.teamFighters.count  {
+                        vsOpposingTeam.teamFighters[i].characterLife = 0   // life points of characters in the opposing team are = 0
                     }
-                } else {
+                } else {                                                   // if Alduin appears : 4 chances out of 5 = he goes away
                     print("Alduin takes a deep breath ... and FLY AWAY")
                 }
-            } else if randomNumber == 6 {
+            } else if randomNumber == 6 {                                  // 1 chance out of 10 : the dragon Paarthunax appears
                 print("Light suddenly surrounds you, the sun shines through the clouds. You turn around and here is the Legendary Dragon PAARTHURNAX"
                     + "\n Paarthurnax is a kind dragon. He will help you. \(team.nameTag), all the members of your team receive 50 life points, including your dead characters")
                 for i in 0..<team.teamFighters.count  {
-                print("\(team.teamFighters[i].characterName) :")
-                team.teamFighters[i].characterLife += 50
+                team.teamFighters[i].characterLife += 50                   // Adds 50 life points to every members of the team
                 }
-            } else {
+            } else {                                                       // 8 chances out of 10 : no dragons
                 print("You see the shadow of a dragon flying above the battlefield but it disappears")
             }
-        }
+        } // end of function randomDragons()
 
         
+        // Function playAgain() : asks the players if they want to start another game
         func playAgain() {
             var newGame = ""
             repeat {
@@ -465,7 +463,7 @@
             case "1": game.startGame()
             default : break
             }
-        }
+        } // end of function playAgain()
         
     }  // end of Class Game
     
