@@ -41,12 +41,12 @@ class Team {
             let fighter = teamFighters[i]
             if fighter.characterLife >= 1 {                     // the character is alive
                 if fighter is NorthWarrior || fighter is ForestDwarf || fighter is OrcGiant {
-                    print("\(fighter) : life points = \(fighter.characterLife) ; weapon's damage = \(fighter.characterWeapon.weaponDamage)")
+                    print("\(fighter.characterName) : life points = \(fighter.characterLife) ; weapon's damage = \(fighter.characterWeapon.weaponDamage)")
                 } else if fighter is MageOfWinterhold {
-                    print("\(fighter) : life points = \(fighter.characterLife) ; healing power = \(fighter.characterWeapon.weaponDamage)")
+                    print("\(fighter.characterName) : life points = \(fighter.characterLife) ; healing power = \(fighter.characterWeapon.weaponDamage)")
                 }
             } else {
-                print("Your \(fighter) is dead")              // the character is dead
+                print("Your character \(fighter.characterName) is dead")              // the character is dead
             }
         }
     } // end of function teamStatFighter()

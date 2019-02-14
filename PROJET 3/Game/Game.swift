@@ -301,7 +301,7 @@
         // Function statsTeams() : Displays team statistics
         func statsTeams() {
             print(" ***** \(firstTeam.nameTag) : here is your team \(firstTeam.teamName) ***** " + "\n ")  // stats of firstTeam
-            firstTeam.teamStatFighter()                                                                    // uses method teamStatFighter in class Team
+            firstTeam.teamStatFighter()                                                                   // uses method teamStatFighter in class Team
             
             print("")
             print(" ***** \(secondTeam.nameTag) : here is your team \(secondTeam.teamName) ***** " + "\n ")  // stats of secondTeam
@@ -428,20 +428,26 @@
                 let secondRandomNumber = Int.random(in: 1...5)             // if Alduin appeared : 1 chance out of 5 = he destroys the opposing team !
                 if secondRandomNumber == 3 {
                     print("Alduin takes a deep breath ... and SPITS FIRE ON TEAM \(vsOpposingTeam.teamName)! They are all dead, Alduin sent them to the Other World.")
+                    print("")
                     for i in 0..<vsOpposingTeam.teamFighters.count  {
                         vsOpposingTeam.teamFighters[i].characterLife = 0   // life points of characters in the opposing team are = 0
                     }
+                    playAgain()                                            // game is over, play again ?
+                    
                 } else {                                                   // if Alduin appears : 4 chances out of 5 = he goes away
                     print("Alduin takes a deep breath ... and FLY AWAY")
+                    print("")
                 }
             } else if randomNumber == 6 {                                  // 1 chance out of 10 : the dragon Paarthunax appears
                 print("Light suddenly surrounds you, the sun shines through the clouds. You turn around and here is the Legendary Dragon PAARTHURNAX"
                     + "\n Paarthurnax is a kind dragon. He will help you. \(team.nameTag), all the members of your team receive 50 life points, including your dead characters")
+                print("")
                 for i in 0..<team.teamFighters.count  {
                 team.teamFighters[i].characterLife += 50                   // Adds 50 life points to every members of the team
                 }
             } else {                                                       // 8 chances out of 10 : no dragons
                 print("You see the shadow of a dragon flying above the battlefield but it disappears")
+                print("")
             }
         } // end of function randomDragons()
 

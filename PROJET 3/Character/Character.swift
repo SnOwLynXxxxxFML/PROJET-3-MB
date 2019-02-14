@@ -48,7 +48,7 @@ class Character {     // Mother Class
             if vsCharacter.characterLife <= 0 {            // if the life of the target is < 0 after the attack, it becomes = 0
                vsCharacter.characterLife  = 0
             }
-            print("\(characterName) attacked \(vsCharacter.characterName) with his \(characterWeapon) and destroyed \(characterWeapon.weaponDamage) life points ! " + "\n ")                   // Story of the attack
+            print("\(characterName) attacked \(vsCharacter.characterName) with his \(characterWeapon.weaponName) and destroyed \(characterWeapon.weaponDamage) life points ! " + "\n ")                   // Story of the attack
             if vsCharacter.characterLife == 0 {
                 print("\(vsCharacter.characterName) is dead ☠️ ! ")
             }
@@ -68,7 +68,7 @@ class Character {     // Mother Class
                 } else {
                     vsCharacter.characterLife += characterWeapon.weaponDamage
                 }
-                print("\(characterName) healed \(vsCharacter.characterName) with his \(characterWeapon) and restored \(characterWeapon.weaponDamage) life points ! " + "\n ")
+                print("\(characterName) healed \(vsCharacter.characterName) with his \(characterWeapon.weaponName) and restored \(characterWeapon.weaponDamage) life points ! " + "\n ")
             } else {
                 print("Sorry, you are very much dead ! You can't heal anyone !" + "\n ")
             }
