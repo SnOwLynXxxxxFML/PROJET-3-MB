@@ -13,23 +13,23 @@
         
         // Class Game PROPERTIES :
         
-        var firstTeam = Team(teamName: "")                     // first team = instance of Team = team of the first player
-        var secondTeam = Team(teamName: "")                    // second team = instance of Team = team of the second player
-        var nameOfTheTeam = ""                                 // name of the team
-        var teamsCharactersNamesTab = [String]()               // tab with all the character's names
-        var characterName = ""                                 // name of the character
-        var playerTeamChoice = 0                               // number to choose the members of the team in function createTeam()
-        var chosenFighter = Character(characterName: "")       // character chosen by the player to play
-        var indexOfCurrentFighter = 0                          // index (int) in the tab of characters corresponding to the chosenFighter
-        var tabOfIndexCurrentFighter = [String]()              // tab containing the index (string) of characters of the playing team
-        var indexOfTarget = 0                                  // index (int) in the tab of characters of target team
-        var tabOfIndexOfTarget = [String]()                    // tab containing the index (string) of characters of the target teams
+        private var firstTeam = Team(teamName: "")                     // first team = instance of Team = team of the first player
+        private var secondTeam = Team(teamName: "")                    // second team = instance of Team = team of the second player
+        private var nameOfTheTeam = ""                                 // name of the team
+        private var teamsCharactersNamesTab = [String]()               // tab with all the character's names
+        private var characterName = ""                                 // name of the character
+        private var playerTeamChoice = 0                               // number to choose the members of the team in function createTeam()
+        private var chosenFighter = Character(characterName: "")       // character chosen by the player to play
+        private var indexOfCurrentFighter = 0                          // index (int) in the tab of characters corresponding to the chosenFighter
+        private var tabOfIndexCurrentFighter = [String]()              // tab containing the index (string) of characters of the playing team
+        private var indexOfTarget = 0                                  // index (int) in the tab of characters of target team
+        private var tabOfIndexOfTarget = [String]()                    // tab containing the index (string) of characters of the target teams
         
         init() {                                               // initialization of Game's PROPERTIES
         }
         
         // Function startGame() describes a game : contains all of the successive actions (methods) to play the game
-        func startGame() {
+        private func startGame() {
             print("******** The Game Begins ********" + "\n ")
             displayGameRules()                                                            // Rules of the game
             print("")
@@ -66,7 +66,7 @@
         } // end of function startGame()
         
         // Function displayGameRules() : explains the rules of the game
-        func displayGameRules() {
+        private func displayGameRules() {
             print("Welcome to Bordeciel's World"
                 + "\n"
                 + "\n Two Teams fight to death with their three characters"
@@ -79,7 +79,7 @@
         
         
         // Function createNameTag() : the players choose a NameTag
-        func createNameTag() {
+        private func createNameTag() {
             var nameTag = String()
             
             for i in 0...1 {                                          // loop for player 1 and player 2 to choose a NameTag
@@ -115,7 +115,7 @@
         
         
         // Function chooseTeamName() : the players choose a team name
-        func chooseTeamName() {
+        private func chooseTeamName() {
             
             for i in 0...1 {                                           // loop for 2 players : asking to choose a TeamName
                 
@@ -149,7 +149,7 @@
         
         
         // Function displayTeamMenu() : display characteristics of the types of characters and asks the player to choose a character
-        func displayTeamMenu() {
+        private func displayTeamMenu() {
             print(""
                 + "\n There are four types of characters : 1-NorthWarrior, 2-MageOfWinterhold, 3-OrcGiant, 4-ForestDwarf "
                 + "\n 1-The NorthWarrior is a fighter - Life: 100 / Weapon(FireSword) Damage: 10 "
@@ -173,7 +173,7 @@
         // The player chooses 3 characters and gives them names
         // A test is made to check that the name of the character is unique
         // The character is added to the tab teamFighters
-        func createTeam(team: Team) {
+        private func createTeam(team: Team) {
             
             for _ in 0...2 {                                                // loop to create 3 characters
                 
@@ -212,7 +212,7 @@
         
         // Function testIfCharacterNameIsUnique() : the characterName is added in a tab containing all the names
         // if the tab already contains the name, the player has to choose another characterName
-        func testIfCharacterNameIsUnique() {
+        private func testIfCharacterNameIsUnique() {
             if teamsCharactersNamesTab.contains(characterName) {
                 repeat {                                                                          // the instruction is repeated
                     print("This name is already taken, please choose an other name")
@@ -228,7 +228,7 @@
         
         
         // function testIfTeamOfOnlyMageOfWingterhold() : test if team is only composed of MageOfWinterhold
-        func testIfTeamOfOnlyMageOfWinterhold(team : Team) {
+        private func testIfTeamOfOnlyMageOfWinterhold(team : Team) {
             var numberOfMageOfWinterhold = 0                           // counts the number of MagesOfWinterhold
     
             for character in team.teamFighters {                       // loop "reading" the tab teamFighters
@@ -248,7 +248,7 @@
         
         
         // Function introFight() : introduction text before fight sequence
-        func introFight() {
+        private func introFight() {
             print("\n =================================================="
                 + "\n =================================================="
                 + "\n Are you ready for the bloodiest fight of the World ?"
@@ -264,7 +264,7 @@
         
         
         // Function playFight() : player 1 plays, then player 2, until one team is dead
-        func playFight() {
+        private func playFight() {
             repeat {                                                                     // Player 1 is playing first
                 if firstTeam.teamLife > 0 {                                              // checks if firstTeam is alive
                     statsTeams()                                                         // display statistics one the teams
@@ -299,7 +299,7 @@
         
         
         // Function statsTeams() : Displays team statistics
-        func statsTeams() {
+        private func statsTeams() {
             print(" ***** \(firstTeam.nameTag) : here is your team \(firstTeam.teamName) ***** " + "\n ")  // stats of firstTeam
             firstTeam.teamStatFighter()                                                                   // uses method teamStatFighter in class Team
             
@@ -311,7 +311,7 @@
         
         
         // Function chooseFighter() :  asks the player to choose a character from their team to play with
-        func chooseFighter(from team : Team) {                                          // label+parameter "from team" : can be firstTeam or secondTeam
+        private func chooseFighter(from team : Team) {                                          // label+parameter "from team" : can be firstTeam or secondTeam
             var playerFighterChoice = ""
             
             repeat {
@@ -336,7 +336,7 @@
         // Function attackOrHeal() with 2 parameters : team (playing team), and opposingTeam
         // If the chosenFighter is a MageOfWinterhold : displays player's own team and the Mage heals the target
         // if the chosenFighter is a Fighter : displays opposing team and the Fighter attacks the target
-        func attackOrHeal(team : Team, vs opposingTeam: Team) {
+        private func attackOrHeal(team : Team, vs opposingTeam: Team) {
             var playerTargetChoice = ""
             var target: Character
             
@@ -379,7 +379,7 @@
         
         
         // Function theWinnerIs() : Displays the Winner of the rpg, the first player with 3 dead characters loses.
-        func theWinnerIs() {
+        private func theWinnerIs() {
             if firstTeam.teamLife <= 0 {
                 print("=======🏆 CONGRATULATIONS \(secondTeam.nameTag) 🏆======="
                     + "\n You crushed \(firstTeam.nameTag) ! You are The Winner Of Bordeciel" )
@@ -393,7 +393,7 @@
         
         // Function MagisChest() : a Magic Chest appears randomly before the chosenFighter (parameter of type Character)
         // A special and powerful Weapon is inside
-        func magicChest(opensBefore: Character) {
+        private func magicChest(opensBefore: Character) {
             let randomNumber = Int.random(in: 1 ... 5)                                     // 1 chance out of 5 to have a magicChest
             if randomNumber == 3 {
                 print(" ⚔️===== Waouhhhh a MagicChest appears in front of you =====⚔️ "
@@ -416,7 +416,7 @@
         
         // Function randomDragon() : BONUS to make it more fun
         // The function has 2 parameters : team = the playing team, and vsOpposingTeam = the opposing team
-        func randomDragon(team: Team, vsOpposingTeam: Team) {
+        private func randomDragon(team: Team, vsOpposingTeam: Team) {
             let randomNumber = Int.random(in: 1...10)                      // Random apparition of 2 types of Dragons
             var playerChoice: String
             if randomNumber == 2 {                                         // 1 chance out of 10 : the dragon ALDUIN appears
@@ -453,7 +453,7 @@
 
         
         // Function playAgain() : asks the players if they want to start another game
-        func playAgain() {
+        private func playAgain() {
             var newGame = ""
             repeat {
                 print("This is the end of the game"
