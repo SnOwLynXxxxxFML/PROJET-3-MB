@@ -11,7 +11,7 @@ class Character {     // Mother Class
     
     // Characters' PROPERTIES :
     
-    var characterName: String                     // name of the character
+    let characterName: String                     // name of the character
     var characterWeapon: Weapon = BareHands()     // Weapon of the character, BareHands by default
     var characterMaxLife = 100                    // Maximum life of the character : at the beginning of the game
     var characterLife = 0                         // Life of the character during the game

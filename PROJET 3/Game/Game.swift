@@ -29,7 +29,7 @@
         }
         
         // Function startGame() describes a game : contains all of the successive actions (methods) to play the game
-        private func startGame() {
+        func startGame() {
             print("******** The Game Begins ********" + "\n ")
             displayGameRules()                                                            // Rules of the game
             print("")
@@ -162,7 +162,7 @@
         
         
         // Funtion input() : function to interact with Player
-        func input() -> Int {
+        private func input() -> Int {
             let strData = readLine();
             
             return Int(strData!)!
